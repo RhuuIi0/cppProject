@@ -78,7 +78,8 @@ private:
     AddDialog* m_addDialog;                 // 增加数据界面
     DelDialog* m_delDialog;                 // 删除数据界面
     int m_nSearchYear;                      // 索引年份
-    QModelIndex m_SelectRow;                // 当前选中行数
+    int m_nSelectRow;                       // 当前选中的序号(list中的序号)
+    QModelIndex m_SelectRow;                // 当前选中的行数
 
     QMenu *m_rightClickMenu;
     QAction *m_addAction;

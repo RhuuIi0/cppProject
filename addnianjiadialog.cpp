@@ -11,6 +11,10 @@ AddNianjiaDialog::AddNianjiaDialog(QWidget *parent) :
     // 设置只允许输入浮点数 0-5 保留一位小数
     QDoubleValidator *validator = new QDoubleValidator(0, 5, 1, this);
     ui->edt_days->setValidator(validator);
+
+    // 获取当前日期，初始化日期
+    QDate date = QDate::currentDate();
+    ui->edt_date->setDate(date);
 }
 
 AddNianjiaDialog::~AddNianjiaDialog()

@@ -96,7 +96,7 @@ void MainWindow::InitTableWidget_info()
 
     InitTableWidget(ui->table_Information, strList, 5);
 
-    ui->table_Information->setColumnWidth(0, 80);       // 设置列宽
+    ui->table_Information->setColumnWidth(0, 100);       // 设置列宽
     ui->table_Information->setColumnWidth(1, 200);
     ui->table_Information->setColumnWidth(2, 150);
     ui->table_Information->setColumnWidth(3, 100);
@@ -147,7 +147,7 @@ void MainWindow::ConnectSQL()
     bool IsOpen = m_db.open();
     if(IsOpen)
     {
-        qDebug()<<"MySQL Connect Success!";
+//        qDebug()<<"MySQL Connect Success!";
     }
     else
     {
@@ -473,9 +473,21 @@ void MainWindow::on_btn_Next_clicked()
 
 void MainWindow::on_table_Information_doubleClicked(const QModelIndex &index)
 {
+    // 获取当前选中行的名字（通过 index -> name -> 从list中find该name的序号）
+    m_nSelectRow = 0;
     m_SelectRow = index;
+    QString strSelectName = ui->table_Information->item(index.row(), 0)->text();
+    // 从list中搜索name的序号
+    for(int i = 0; i < m_listInfo.count(); i++)
+    {
+        if(m_listInfo[i].strName == strSelectName)
+        {
+            m_nSelectRow = i;
+        }
+    }
+
     // 显示label_name 标签
-    ui->label_Name->setText(m_listInfo[m_SelectRow.row()].strName);
+    ui->label_Name->setText(m_listInfo[m_nSelectRow].strName);
     // 从 QList<Info> 获取数据
     // 删除所有数据
     while(ui->table_nianjia->rowCount() > 0)
@@ -485,36 +497,36 @@ void MainWindow::on_table_Information_doubleClicked(const QModelIndex &index)
 //    QMessageBox::information(this, "tip", m_listInfo[index.row()].strName, "OK");
     QString strBeginDate;
     QString strEndDate;
-    QSqlQuery query;
+    QSqlQuery* query = new QSqlQuery;
     QString strSqlExec;
 
     // select in_date from nianjia where name="白云" and in_date BETWEEN "2021/6/26" and "2022/6/26";
         // 年假区间
     strBeginDate = QDate(
                         m_nSearchYear,
-                        m_listInfo[index.row()].dateIn.month(),
-                        m_listInfo[index.row()].dateIn.day()
+                        m_listInfo[m_nSelectRow].dateIn.month(),
+                        m_listInfo[m_nSelectRow].dateIn.day()
                    ).toString("yyyy/MM/dd");
     strEndDate = QDate(
                      m_nSearchYear+1,
-                     m_listInfo[index.row()].dateIn.month(),
-                     m_listInfo[index.row()].dateIn.day()
+                     m_listInfo[m_nSelectRow].dateIn.month(),
+                     m_listInfo[m_nSelectRow].dateIn.day()
                  ).toString("yyyy/MM/dd");
 
     strSqlExec = "select in_date, days from nianjia where name=\"" +
-                 m_listInfo[index.row()].strName +
+                 m_listInfo[m_nSelectRow].strName +
                  "\" and in_date BETWEEN \"" +
                  strBeginDate +
                  "\" and \"" +
                  strEndDate +
                  "\";";
-    if(!query.exec(strSqlExec))
+    if(!query->exec(strSqlExec))
     {
         // 是否执行成功
         QMessageBox::question(this, "error", "get nianjia data", "OK");
         return ;
     }
-    if(!query.next())
+    if(!query->next())
     {
         // 结果是否为空
         return ;
@@ -529,13 +541,13 @@ void MainWindow::on_table_Information_doubleClicked(const QModelIndex &index)
 
         // 请假日期
         ui->table_nianjia->setItem(nRowCount, 0,
-                                   new CenteredTableWidgetItem(query.value(0).toString()));
+                                   new CenteredTableWidgetItem(query->value(0).toString()));
         // 请假天数
         ui->table_nianjia->setItem(nRowCount, 1,
-                                   new CenteredTableWidgetItem(query.value(1).toString()));
+                                   new CenteredTableWidgetItem(query->value(1).toString()));
 
         nRowCount++;
-    }while(query.next());
+    }while(query->next());
 }
 
 
@@ -574,32 +586,55 @@ void MainWindow::showContextMenu(const QPoint &pos)
 
 void MainWindow::onAddRow()
 {
+    m_addNianjiaDialog->open();
     // 判断是否有年假
-    if(m_listInfo[m_SelectRow.row()].strIsHave == "是")
-    {
-        m_addNianjiaDialog->open();
-    }
-    else
-    {
-        QMessageBox::information(this, "tip", "该成员没有年假", "OK");
-    }
+//    if(m_listInfo[m_SelectRow.row()].strIsHave == "是")
+//    {
+//        m_addNianjiaDialog->open();
+//    }
+//    else
+//    {
+//        QMessageBox::information(this, "tip", "该成员没有年假", "OK");
+//    }
 }
 
 void MainWindow::receiveAddData_nianjia(QString strData)
 {
     // insert into nianjia values("白云", "2022/09/30", 1.5);
-    QSqlQuery query;
+    QSqlQuery* query = new QSqlQuery;
     QStringList strList = strData.split(" ");               // 空格分隔字符串
 
+    // 判断此时是否有年假 请假日期 <=> 入职日期
+    QDate date = QDate::fromString(strList[0], "yyyy/M/d");
+    if((date.year() < m_listInfo[m_nSelectRow].dateIn.year()+2))
+    {
+        QMessageBox::question(this, "error", "此成员在该日期没年假", "OK");
+        return ;
+    }
+    if((date.year() == m_listInfo[m_nSelectRow].dateIn.year()+2))
+    {
+        // 只比较月份和日期，请假日期要晚于入职日期
+        QDate dateIn;
+        dateIn.setDate(date.year(),
+                       m_listInfo[m_nSelectRow].dateIn.month(),
+                       m_listInfo[m_nSelectRow].dateIn.day());
+        int daysDifference = date.daysTo(dateIn);
+        if(daysDifference > 0)
+        {
+            QMessageBox::question(this, "error", "此成员在该日期没年假", "OK");
+            return ;
+        }
+    }
+
     QString strSqlExec = "insert into nianjia values(\"" +
-                         m_listInfo[m_SelectRow.row()].strName +
+                         m_listInfo[m_nSelectRow].strName +
                          "\", \"" +
                          strList[0] +
                          "\", " +
                          strList[1] +
                          ");";
 
-    if(!query.exec(strSqlExec))
+    if(!query->exec(strSqlExec))
     {
         QMessageBox::question(this, "error", "add nianjia", "OK");
     }
@@ -623,7 +658,7 @@ void MainWindow::onDeleteRow()
     {
         // delete from nianjia where name="白云" and in_date="2021/08/31" and days=1.5;
         QString strSqlExec = "delete from nianjia where name=\"" +
-                             m_listInfo[m_SelectRow.row()].strName +
+                             m_listInfo[m_nSelectRow].strName +
                              "\" and in_date=\"" +
                              selectItems[0]->text() +
                              "\" and days=" +
