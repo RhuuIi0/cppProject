@@ -16,10 +16,6 @@
   <property name="windowTitle">
    <string>年假管理 by RhuuIi0</string>
   </property>
-  <property name="windowIcon">
-   <iconset>
-    <normaloff>:/new/prefix1/C:/Users/1/Downloads/65_fragile_8k_7ffb2_2.jpg</normaloff>:/new/prefix1/C:/Users/1/Downloads/65_fragile_8k_7ffb2_2.jpg</iconset>
-  </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QLineEdit" name="edt_Search">
     <property name="geometry">
@@ -65,7 +61,7 @@
      <rect>
       <x>90</x>
       <y>54</y>
-      <width>41</width>
+      <width>51</width>
       <height>23</height>
      </rect>
     </property>
@@ -163,7 +159,7 @@
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>140</x>
+      <x>150</x>
       <y>54</y>
       <width>16</width>
       <height>21</height>
@@ -255,7 +251,7 @@ color: rgb(0, 0, 0);</string>
      <x>0</x>
      <y>0</y>
      <width>1037</width>
-     <height>20</height>
+     <height>22</height>
     </rect>
    </property>
   </widget>

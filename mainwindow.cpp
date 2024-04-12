@@ -139,9 +139,9 @@ void MainWindow::ConnectSQL()
 {
     // 连接mysql
     m_db = QSqlDatabase::addDatabase("QODBC");
-    m_db.setHostName("192.168.1.130");
+    m_db.setHostName("RhuuIi0");
     m_db.setPort(3306);
-    m_db.setDatabaseName("testConnet");
+    m_db.setDatabaseName("nameConnect");
     m_db.setUserName("shareUser");
     m_db.setPassword("000000");
     bool IsOpen = m_db.open();
