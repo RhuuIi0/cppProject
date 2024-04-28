@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>721</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QGridLayout" name="gridLayout_2">
+    <item row="2" column="0">
+     <widget class="QTabWidget" name="tabWidget">
+      <property name="currentIndex">
+       <number>3</number>
+      </property>
+      <widget class="QWidget" name="tab_zhongjian">
+       <attribute name="title">
+        <string>中健</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_3">
+        <item row="0" column="0">
+         <widget class="QTableWidget" name="table_zhongjian">
+          <property name="layoutDirection">
+           <enum>Qt::LeftToRight</enum>
+          </property>
+          <property name="verticalScrollBarPolicy">
+           <enum>Qt::ScrollBarAsNeeded</enum>
+          </property>
+          <property name="horizontalScrollBarPolicy">
+           <enum>Qt::ScrollBarAsNeeded</enum>
+          </property>
+          <property name="sizeAdjustPolicy">
+           <enum>QAbstractScrollArea::AdjustIgnored</enum>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tab_quancai">
+       <attribute name="title">
+        <string>全彩</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_4">
+        <item row="0" column="0">
+         <widget class="QTableWidget" name="table_quancai"/>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tab_zhongda">
+       <attribute name="title">
+        <string>忠达</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_5">
+        <item row="0" column="0">
+         <widget class="QTableWidget" name="table_zhongda"/>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tab_quanshikuai">
+       <attribute name="title">
+        <string>全实快</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_6">
+        <item row="0" column="0">
+         <widget class="QTableWidget" name="table_quanshikuai"/>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tab_hantai">
+       <attribute name="title">
+        <string>涵泰</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_7">
+        <item row="0" column="0">
+         <widget class="QTableWidget" name="table_hantai"/>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tab_xinghe">
+       <attribute name="title">
+        <string>星禾</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_8">
+        <item row="0" column="0">
+         <widget class="QTableWidget" name="table_xinghe"/>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tab_huoyan">
+       <attribute name="title">
+        <string>火眼</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_9">
+        <item row="0" column="0">
+         <widget class="QTableWidget" name="table_huoyan"/>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tab_rongkang">
+       <attribute name="title">
+        <string>荣康</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_10">
+        <item row="0" column="0">
+         <widget class="QTableWidget" name="table_rongkang"/>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tab_guoxin">
+       <attribute name="title">
+        <string>国鑫</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_11">
+        <item row="0" column="0">
+         <widget class="QTableWidget" name="table_guoxin"/>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tab_yunfeng">
+       <attribute name="title">
+        <string>云丰</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_12">
+        <item row="0" column="0">
+         <widget class="QTableWidget" name="table_yunfeng"/>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tab_gangxu">
+       <attribute name="title">
+        <string>刚需</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_13">
+        <item row="0" column="0">
+         <widget class="QTableWidget" name="table_gangxu"/>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tab_shangjiu">
+       <attribute name="title">
+        <string>上九</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_14">
+        <item row="0" column="0">
+         <widget class="QTableWidget" name="table_shangjiu"/>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tab_zhongzheng">
+       <attribute name="title">
+        <string>中正</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_15">
+        <item row="0" column="0">
+         <widget class="QTableWidget" name="table_zhongzheng"/>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tab_hengdongying">
+       <attribute name="title">
+        <string>恒东瀛</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_16">
+        <item row="0" column="0">
+         <widget class="QTableWidget" name="table_hengdongying"/>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+    <item row="0" column="0">
+     <layout class="QGridLayout" name="gridLayout">
+      <item row="0" column="5">
+       <widget class="QPushButton" name="btn_Next">
+        <property name="text">
+         <string>下一月</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0">
+       <spacer name="horizontalSpacer">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item row="0" column="1">
+       <widget class="QPushButton" name="btn_PreYear">
+        <property name="text">
+         <string>上一年</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="4">
+       <widget class="QPushButton" name="btn_Pre">
+        <property name="text">
+         <string>上一月</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="2">
+       <widget class="QPushButton" name="btn_NextYear">
+        <property name="text">
+         <string>下一年</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="3">
+       <widget class="QLabel" name="label_Date">
+        <property name="text">
+         <string>TextLabel</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="6">
+       <spacer name="horizontalSpacer_2">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+     </layout>
+    </item>
+    <item row="1" column="0">
+     <spacer name="horizontalSpacer_3">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>40</width>
+        <height>20</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>721</width>
+     <height>20</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
